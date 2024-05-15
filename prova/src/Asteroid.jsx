@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-//1 criar contate asteroid
-//2 criar constante API_KEY
-//3 Criar Parametros de asteroid e ID
-//4 Colocar ID e Chave na URL 
-//5 Criar uma opção de erro 
-//6 Buscar data
-//7 retorno com as respostas das perguntas da prova 
-//8 exportar 
-
-//1   
+   
 const Asteroid = () => {
-//3
+
 const { id } = useParams();
 const [asteroid, setAsteroid] = useState(null);
-//2
+
 const API_KEY = "GDf6R16niyFcnCxNnJcKVOExhIUiS80zcxpCPmnC";
-//6
+
   useEffect(() => {
   async function fetchData() {
  try {
  const res = await fetch(`https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${API_KEY}`);
  const data = await res.json();
   setAsteroid(data);
-//5  
+  
 } catch (error) {
   console.error("Erro ao buscar os dados do asteroide");
   }}
@@ -34,7 +25,7 @@ const API_KEY = "GDf6R16niyFcnCxNnJcKVOExhIUiS80zcxpCPmnC";
   if (!asteroid) {
     return <p>Carregando...</p>;
   }
-//7
+
   return (
  <div className="container">
  <h1 className="titulo">Detalhes do Asteroide</h1>
@@ -46,5 +37,5 @@ const API_KEY = "GDf6R16niyFcnCxNnJcKVOExhIUiS80zcxpCPmnC";
  <p className="card-text">Magnitude Absoluta: {asteroid.absolute_magnitude_h}</p>
   </div></div>
   );};
-//8
+
 export default Asteroid;
